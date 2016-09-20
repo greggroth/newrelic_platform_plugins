@@ -20,6 +20,10 @@ module NewRelicResqueAgent
     
     attr_reader :ident
 
+    def instance_label
+      "Resque"
+    end
+
     def setup_metrics
       @total_failed = NewRelic::Processor::EpochCounter.new
       @processed    = NewRelic::Processor::EpochCounter.new
