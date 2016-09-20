@@ -35,7 +35,8 @@ module NewRelicResqueAgent
       end
 
       begin
-        Resque.redis = redis
+        uri = URI.parse(redis)
+        Resque.redis = Redis.new(host: uri.host, port: uri.port, password: uri.password)
         Resque.redis.namespace = namespace unless namespace.nil?
         info = Resque.info
         
